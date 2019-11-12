@@ -14,15 +14,15 @@ COPY $CONNEXT_DDS $NDDSHOME
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     ca-certificates \
-      build-essential \
-      git \
-      cmake \
-      make \
-      wget \
-      flex \
-      bison \
-	  && cd / && git clone https://github.com/kyoungho/fluent-bit.git && \
-	  cd /fluent-bit/build && cmake .. && make
+    build-essential \
+    git \
+    cmake \
+    make \
+    wget \
+    flex \
+    bison \
+    && cd / && git clone https://github.com/kyoungho/fluent-bit.git && \
+    cd /fluent-bit/build && cmake .. && make
 
 FROM ubuntu:18.04
 
@@ -30,6 +30,9 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/app/lib
 
 COPY --from=builder /fluent-bit/build/bin/fluent-bit /app/fluent-bit
 COPY --from=builder /fluent-bit/conf/out_dds.conf /app/fluent-bit.conf
+
+RUN apt-get update && \ 
+    apt-get install -y ca-certificates
 
 WORKDIR /app
 CMD ./fluent-bit -c fluent-bit.conf
