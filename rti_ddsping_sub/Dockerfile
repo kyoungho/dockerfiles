@@ -13,4 +13,4 @@ COPY . /app
 
 WORKDIR /app
 
-CMD ./rtiddsping -publisher ${ARGS}
+CMD ./rtiddsping -subscriber ${ARGS}
