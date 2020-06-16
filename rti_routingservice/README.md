@@ -1,5 +1,6 @@
 ## Locate RTI Routing Service and its dependant libraries at your current directory
 `$ cp -rf $NDDSHOME/resource/app/lib/x64Linux2.6gcc4.4.5 ./lib`
+
 `$ cp -rf $NDDSHOME/resource/app/bin/x64Linux2.6gcc4.4.5/rtiroutingservice .`
 
 ## Build a Docker image
